@@ -1,5 +1,3 @@
-# API with OpenAPI & AWS SAM
-
 <p align="center">
   <h1 align="center"><b> API with OpenAPI & AWS SAM </b></h1>
 </p>
