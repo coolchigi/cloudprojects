@@ -1,5 +1,5 @@
 # Cloud Projects 
-    - ft AWS, Azure & ...maybe GCP
+    "ft AWS, Azure & ...maybe GCP"
 
 Welcome to the Cloud Projects repository! This repository contains various projects built on different cloud providers. Each project is organized within its own folder.
 
