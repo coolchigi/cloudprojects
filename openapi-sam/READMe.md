@@ -15,10 +15,6 @@
     <li><a href="#lambda-function">Lambda Function</a></li>
     <li><a href="#api-gateway">API Gateway</a></li>
     <li><a href="#javascript">JavaScript</a></li>
-    <li><a href="#sam-local-invoke">SAM Local Invoke</a></li>
-    <li><a href="#github-actions">Github Actions</a></li>
-    <li><a href="#unit-testing">Unit Testing</a></li>
-    <li><a href="#integration-testing">Integration Testing</a></li>
     <li><a href="#improvements">Improvements</a></li>
     <li><a href="#challenges-closing">Challenges & Closing</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
