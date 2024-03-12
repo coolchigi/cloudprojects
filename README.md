@@ -8,6 +8,7 @@ Welcome to the Cloud Projects repository! This repository contains various proje
 - [Projects](#projects)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
+- [Troubleshooting Errors](#troubleshooting)
 - [License](#license)
 
 
