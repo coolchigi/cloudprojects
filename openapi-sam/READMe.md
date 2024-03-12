@@ -45,6 +45,38 @@ The goal of this readme is to serve as a guide for others willing to build somet
 -----------------
 This is the [TBD]
 
+## SAM CLI
+<a href="https://github.com/coolchigi/Cloud-Projects/blob/main/openapi-sam/openapi.yaml">openapi.yaml</a>
+-> 
+This is an OpenAPI 3.0.1 specification file for an API Gateway in AWS. Let's break it down:
+
+- `openapi: "3.0.1"`: This line specifies the version of the OpenAPI specification that the document is using.
+
+- `info`: This section provides metadata about the API. The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
+
+- `paths`: This section describes the available paths and operations for the API.
+
+- `/pricepermeter`: This is the endpoint of the API. It supports a `POST` operation.
+
+- `post`: This section describes the details of the `POST` operation on the `/pricepermeter` endpoint.
+
+- `consumes` and `produces`: These fields specify the MIME type of the data that the API can consume and produce.
+
+- `responses`: This section describes the possible responses from the `POST` operation.
+
+- `x-amazon-apigateway-integration`: This is an extension provided by AWS to integrate the API with other AWS services. In this case, it's integrating with a Lambda function.
+
+- `httpMethod: "POST"`: This specifies that the integrated service will be invoked using a `POST` request.
+
+- `credentials`: This field is used to specify the credentials required to call the integrated service. Here, it's using an AWS IAM role.
+
+- `uri`: This is the URI of the integrated service. Here, it's a Lambda function.
+
+- `responses`: This section describes the possible responses from the integrated service.
+
+- `passthroughBehavior: "when_no_match"`: This field determines how the request data will be passed to the integrated service when the request does not match any of the specified request parameters.
+
+- `type: "aws"`: This specifies that the integrated service is an AWS service.
 
 
 ### Lambda
