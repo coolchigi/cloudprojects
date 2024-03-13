@@ -30,7 +30,6 @@ The goal of this readme is to serve as a guide for others willing to build somet
 ### Tech Stack
 ------------------
 - AWS SAM
-- DynamoDB
 - AWS Lambda
 - API Gateway
 - JavaScript
@@ -116,7 +115,7 @@ InvalidRequest)
 </table>
 
 
-### Api Gateway
+### API GATEWAY
 ....
 #### Test Your API
 ```json
@@ -130,3 +129,40 @@ InvalidRequest)
 ----
 <h1>Result</h1>
 <img src="assets/api-gateway-image.png" alt="Expected Result" width="500" height="200">
+
+#### Build a model
+- We can build a model to represent the schema of the incoming request and response messages. We could also validate and transform the incoming request message to match a Lambda spec.
+
+```yaml
+components:
+    schemas:
+        costCalculatorRequest:
+            type: object
+            properties:
+                price:
+                    type: number
+                size:
+                    type: number
+                unit:
+                    type: string
+                downPayment:
+                    type: number
+```
+<h3>Code Breakdown:</h3>
+<ul>
+<li> components: This is a section for defining reusable components such as schemas, parameters, responses, etc. </li>
+<li> schemas: This is a section for defining schemas.</li>
+<li> costCalculatorRequest: This is the name of the schema being defined.</li>
+<li>type: object: This indicates that the costCalculatorRequest is an object.</li>
+<li>properties:: This section defines the properties of the costCalculatorRequest object </li>
+<li>price, size unit, downPayment: These are the properties of the costCalculatorRequest object. 
+            Each property has a type: field that specifies the data type of the property. For example, price and size are numbers, unit is a string, and downPayment is a number.</li>
+</ul>
+
+#### Request Validation
+Request validation is used to ensure the incoming request is properly formatted and contains proper attributes. You can set up request validators in an API’s OpenAPI  definition file and then import the OpenAPI  definitions into API Gateway
+       
+
+Read More here
+- [Components Object](https://spec.openapis.org/oas/v3.1.0#components-object)
+- [Schemas Object](https://spec.openapis.org/oas/v3.1.0#schemaObject)
