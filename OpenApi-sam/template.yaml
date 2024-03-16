@@ -39,6 +39,28 @@ Resources:
         Properties:
             CodeUri: handlers/
             Handler: cost-calculator.CostCalculator
+    CostCalculatorUserPool:
+        Type: AWS::Cognito::UserPool
+        Properties:
+            UserPoolName: "CostCalculatorUserPool"
+            Policies:
+                PasswordPolicy:
+                    MinimumLength: 8
+                    RequireLowercase: true
+                    RequireNumbers: true
+                    RequireUppercase: true
+    CostCalculatorUserPoolClient:
+        Type: AWS::Cognito::UserPoolClient
+        Properties:
+            ClientName: Cost-Calculator-App-Client
+            UserPoolId: !Ref CostCalculatorUserPool
+            GenerateSecret: false
+            ExplicitAuthFlows:
+                - ALLOW_ADMIN_USER_PASSWORD_AUTH
+                - ALLOW_REFRESH_TOKEN_AUTH
+                - ALLOW_CUSTOM_AUTH
+                - ALLOW_USER_PASSWORD_AUTH
+                - ALLOW_USER_SRP_AUTH
             
     # Execution Role
     LambdaExecutionRole:
@@ -84,4 +106,10 @@ Outputs:
   FirstAPI:
     Description: "API Gateway endpoint URL to call my first api"
     Value: !Sub "https://${FirstAPI}.execute-api.${AWS::Region}.amazonaws.com/dev/"
+  CognitoUserPool:
+    Description: "Cognito User Pool"
+    Value: !Ref CostCalculatorUserPool
+  CostCalculatorUserPoolClient:
+    Description: "Cognito User Pool Client"
+    Value: !Ref CostCalculatorUserPoolClient
 
