@@ -161,6 +161,7 @@ components:
 
 #### Request Validation
 Request validation is used to ensure the incoming request is properly formatted and contains proper attributes. You can set up request validators in an API’s OpenAPI  definition file and then import the OpenAPI  definitions into API Gateway
+
        
 
 Read More here
