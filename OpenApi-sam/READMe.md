@@ -185,3 +185,33 @@ Here are the changes that was made:
 Read More here
 - [Components Object](https://spec.openapis.org/oas/v3.1.0#components-object)
 - [Schemas Object](https://spec.openapis.org/oas/v3.1.0#schemaObject)
+
+
+### AUTH & AUTHO
+We need a way to protect our API as currently it's available to the public. API Gateway supports IAM auth, Cognito User Pools, and custom authorizers written as Lambda function. With Cognito, we can have only registered users use the api. 
+
+## Enabling Authentication and Authorization on the API
+
+1. **Create a Cognito User Pool**: This is your user directory in Amazon Cognito. It allows users to sign in through an external identity provider (IdP) or directly into the pool.
+
+2. **Create a User**: Add a user to the Cognito User Pool. This user will have the necessary credentials to access the API.
+
+3. **Set up an Authorizer in API Gateway**: An authorizer is a function that controls who can call your API. You can use a Cognito user pool as an authorizer.
+
+   - Go to the API Gateway console.
+   - Select your API.
+   - In the navigation pane, choose "Authorizers".
+   - Choose "Create New Authorizer".
+   - For "Type", choose "Cognito".
+   - In "Cognito User Pool", choose the user pool you created earlier.
+   - Choose "Create".
+
+4. **Attach the Authorizer to API Methods**: Once the authorizer is set up, you need to attach it to the API methods that you want to protect.
+
+   - In the API Gateway console, choose your API.
+   - Choose "Resources" in the navigation pane.
+   - For each method you want to protect, choose "Method Request".
+   - For "Authorization", choose the Cognito user pool authorizer you created.
+   - Choose the checkmark icon to save your changes.
+
+Now, only users who are authenticated through the Cognito user pool can access your API.
