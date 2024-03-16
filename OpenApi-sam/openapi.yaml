@@ -4,6 +4,19 @@ info:
    description: "First API with IaC example"
    version: "1.0"
 
+x-amazon-apigateway-request-validators:
+    All:
+        validateRequestBody: true
+        validateRequestParameters: true
+    Body:
+        validateRequestBody: true
+        validateRequestParameters: false
+    Params:
+        validateRequestBody: false
+        validateRequestParameters: true
+
+x-amazon-apigateway-request-validator: Body
+
 paths:
     /pricepermeter:
         post:
