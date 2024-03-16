@@ -130,7 +130,7 @@ InvalidRequest)
 <h1>Result</h1>
 <img src="assets/api-gateway-image.png" alt="Expected Result" width="500" height="200">
 
-#### Build a model
+#### BUILD A MODEL
 - We can build a model to represent the schema of the incoming request and response messages. We could also validate and transform the incoming request message to match a Lambda spec.
 
 ```yaml
@@ -159,10 +159,28 @@ components:
             Each property has a type: field that specifies the data type of the property. For example, price and size are numbers, unit is a string, and downPayment is a number.</li>
 </ul>
 
-#### Request Validation
+#### REQUEST VALIDATION
 Request validation is used to ensure the incoming request is properly formatted and contains proper attributes. You can set up request validators in an API’s OpenAPI  definition file and then import the OpenAPI  definitions into API Gateway
 
-       
+<h3 style="color:blue;"> <strong>Create and configure request validators for your first API </strong> </h3> 
+
+The following YAML code is part of an AWS API Gateway configuration in an OpenAPI specification file. It's defining request validators that are used to validate incoming requests to the API.
+
+- `x-amazon-apigateway-request-validators`: This is a custom extension provided by AWS API Gateway. It's used to define request validators. In this code, three validators are defined: `All`, `Body`, and `Params`.
+
+  - `All`: This validator is configured to validate both the request body and request parameters. This is indicated by `validateRequestBody: true` and `validateRequestParameters: true`.
+
+  - `Body`: This validator is configured to validate only the request body and not the request parameters. This is indicated by `validateRequestBody: true` and `validateRequestParameters: false`.
+
+  - `Params`: This validator is configured to validate only the request parameters and not the request body. This is indicated by `validateRequestBody: false` and `validateRequestParameters: true`.
+
+- `x-amazon-apigateway-request-validator`: This is another custom extension provided by AWS API Gateway. It's used to set the default request validator for the API. In this code, `Body` is set as the default request validator. This means that, by default, only the request body will be validated for all API endpoints unless specified otherwise.
+
+
+Here are the changes that was made: 
+[Updated openapi.yaml](https://github.com/coolchigi/Cloud-Projects/blob/5a1fb72aaf0d51de89e7458fe5e4615ad94dbaf6/OpenApi-sam/openapi.yaml#L7)     
+
+
 
 Read More here
 - [Components Object](https://spec.openapis.org/oas/v3.1.0#components-object)
