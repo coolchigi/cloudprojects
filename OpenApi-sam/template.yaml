@@ -39,6 +39,11 @@ Resources:
         Properties:
             CodeUri: handlers/
             Handler: cost-calculator.CostCalculator
+    MedianPriceCalculator:
+        Type: AWS::Serverless::Function
+        Properties:
+            CodeUri: handlers/
+            Handler: median-price-calculator.MedianPriceCalculator
     CostCalculatorUserPool:
         Type: AWS::Cognito::UserPool
         Properties:
@@ -82,7 +87,9 @@ Resources:
                     Statement:
                       - Effect: Allow
                         Action: 'lambda:InvokeFunction'
-                        Resource: !GetAtt CostCalculator.Arn
+                        Resource: [
+                          !GetAtt CostCalculator.Arn, 
+                          !GetAtt MedianPriceCalculator.Arn]
     ApiCWLRoleArn:
       Type: AWS::ApiGateway::Account
       Properties: 
