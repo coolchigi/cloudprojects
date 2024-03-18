@@ -6,12 +6,17 @@ Description: >
 Globals:
     # Enable Logs
     Api:
+        CacheClusterEnabled: True
+        CacheClusterSize: "0.5"
         MethodSettings:
             - ResourcePath: "/*"
               HttpMethod: "*"
               DataTraceEnabled: True
               LoggingLevel: INFO
               MetricsEnabled: True
+              CacheDataEncrypted: True
+              CacheTtlInSeconds: 60
+              CachingEnabled: True
     Function:
         Timeout: 3
         Runtime: nodejs18.x
@@ -31,6 +36,12 @@ Resources:
                         Location: "openapi.yaml"
             EndpointConfiguration:
                 Type: REGIONAL
+            MethodSettings:
+            - ResourcePath: "/medianpricecalculator"
+              HttpMethod: "POST"
+              CacheDataEncrypted: True
+              CacheTtlInSeconds: 60
+              CachingEnabled: True
 
 
     # Lambda functions                                                     
