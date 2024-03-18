@@ -32,6 +32,8 @@ paths:
             responses:
                 "200":
                     description: "200 response"
+            security:
+              - ApiKey: []
             x-amazon-apigateway-integration:
                 httpMethod: "POST"
                 credentials:
@@ -47,7 +49,10 @@ paths:
                             "region": "$input.params("region")"
                         }
                 passthroughBehavior: "when_no_match"
-                type: "aws" 
+                type: "aws"
+                cacheNamespace: "my-first-api-cache"
+                cacheKeyParameters:
+                - "method.request.querystring.region"    
     /pricepermeter:
         post:
             consumes:
@@ -153,3 +158,9 @@ components:
                 type: "cognito_user_pools"
                 providerARNs:
                   - Fn::GetAtt: [CostCalculatorUserPool, Arn]
+        ApiKey:
+            type: apiKey
+            name: x-api-key
+            in: header
+
+    

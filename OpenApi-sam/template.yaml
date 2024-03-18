@@ -42,6 +42,51 @@ Resources:
               CacheDataEncrypted: True
               CacheTtlInSeconds: 60
               CachingEnabled: True
+    
+    # Usage Plan for REST API
+    FirstAPIUsagePlan:
+        Type: AWS::ApiGateway::UsagePlan
+        DependsOn:
+          - FirstAPIdevStage
+        Properties:
+            ApiStages:
+              - ApiId: !Ref FirstAPI
+                Stage: dev
+                Throttle:
+                    "/medianpricecalculator/POST":
+                        BurstLimit: 200
+                        RateLimit: 100
+            Description: Exclusive plan for our best customers
+            Quota:
+                Limit: 5000
+                Period: MONTH
+            Throttle:
+                BurstLimit: 100
+                RateLimit: 200
+            UsagePlanName: Platinum
+    
+    # API Key for REST API
+    FirstAPIKey:
+        Type: AWS::ApiGateway::ApiKey
+        DependsOn:
+          - FirstAPIUsagePlan
+        Properties:
+            Name: myFirstApiKey
+            Description: Main key for my-first-api API
+            Enabled: True
+            StageKeys:
+              - RestApiId: !Ref FirstAPI
+                StageName: dev
+                
+    # Link API Key to UsagePlan
+    LinkUsagePlanApiKey:
+        Type: AWS::ApiGateway::UsagePlanKey
+        Properties:
+            KeyId: 
+                Ref: FirstAPIKey
+            KeyType: API_KEY
+            UsagePlanId: 
+                Ref: FirstAPIUsagePlan
 
 
     # Lambda functions                                                     
