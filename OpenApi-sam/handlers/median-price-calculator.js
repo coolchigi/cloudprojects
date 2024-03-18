@@ -7,6 +7,10 @@
           US: 320000.0,
           CA: 240000.0,
           BR: 260000.0,
+          UK: 280000.0,
+          AU: 350000.0,
+          DE: 300000.0,
+          FR: 270000.0
       };
 
       // Check if the input region is valid and retrieve the corresponding median price
