@@ -228,3 +228,5 @@ We can enable API caching in API Gateway to cache our endpoint's response. This 
 - To prevent your API from being overwhelmed by too many requests, API Gateway throttles request to your API.
 - Throttle limits are pre-defined steady state and burst throttling limits set at the account/regional level. 
 - Can setup usage plans to restrict client request submissions to within specified request rates and quotes.
+
+On lines 47 to 66 we're declaring a new Usage Plan associated to our first API on stage dev (lines 52 to 58), then we're defining the method throttle to `/medianpricecalculator` **POST** (lines 55 to 58) setting the `BurstLimit`  to 200 and the `RateLimit`  to 100. From lines 59 to 66 we're defining the Description of our Usage Plan, the Quota  that will be applied (here we're defining a quota of 5000 requests per MONTH), the global Throttle  settings and finally the UsagePlanName.
