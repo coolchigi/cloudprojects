@@ -18,6 +18,36 @@ x-amazon-apigateway-request-validators:
 x-amazon-apigateway-request-validator: Body
 
 paths:
+    /medianpricecalculator:
+        post:
+            parameters:
+            - name: "region"
+              in: "query"
+              schema:
+                type: "string"
+            consumes:
+            - "application/json"
+            produces:
+            - "application/json"
+            responses:
+                "200":
+                    description: "200 response"
+            x-amazon-apigateway-integration:
+                httpMethod: "POST"
+                credentials:
+                    Fn::GetAtt: [LambdaExecutionRole, Arn]
+                uri: 
+                  Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MedianPriceCalculator.Arn}/invocations"
+                responses:
+                    default:
+                        statusCode: "200"
+                requestTemplates:
+                    application/json: |
+                        {
+                            "region": "$input.params("region")"
+                        }
+                passthroughBehavior: "when_no_match"
+                type: "aws" 
     /pricepermeter:
         post:
             consumes:
