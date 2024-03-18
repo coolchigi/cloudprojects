@@ -3,7 +3,6 @@
 </p>
 
 
-
 <details open="open">
   <summary><h2 style="display: inline-block">Project Details</h2></summary>
   <ol>
@@ -162,7 +161,7 @@ components:
 #### REQUEST VALIDATION
 Request validation is used to ensure the incoming request is properly formatted and contains proper attributes. You can set up request validators in an API’s OpenAPI  definition file and then import the OpenAPI  definitions into API Gateway
 
-<h3 style="color:blue;"> <strong>Create and configure request validators for your first API </strong> </h3> 
+<h3 style="color:gray;"> <strong>Create and configure request validators for your first API </strong> </h3> 
 
 The following YAML code is part of an AWS API Gateway configuration in an OpenAPI specification file. It's defining request validators that are used to validate incoming requests to the API.
 
@@ -187,10 +186,10 @@ Read More here
 - [Schemas Object](https://spec.openapis.org/oas/v3.1.0#schemaObject)
 
 
-### AUTH & AUTHO
+#### AUTH & AUTHO
 We need a way to protect our API as currently it's available to the public. API Gateway supports IAM auth, Cognito User Pools, and custom authorizers written as Lambda function. With Cognito, we can have only registered users use the api. 
 
-## Enabling Authentication and Authorization on the API
+<h3 style="color:gray;"> <strong>Enabling Authentication and Authorization on the API</strong> </h3> 
 
 1. **Create a Cognito User Pool**: This is your user directory in Amazon Cognito. It allows users to sign in through an external identity provider (IdP) or directly into the pool.
 
@@ -215,3 +214,17 @@ We need a way to protect our API as currently it's available to the public. API 
    - Choose the checkmark icon to save your changes.
 
 Now, only users who are authenticated through the Cognito user pool can access your API.
+
+
+#### MESSAGE CACHING
+We can enable API caching in API Gateway to cache our endpoint's response. This helps us reduced the number of calls made to you our backend...improving latency of the requests made to the API
+
+`TTL(time to live`) - the time in which our cached responses has to live or stay stored
+
+- Enable caching to API Stage
+
+
+#### MESSAGE THROTTLING
+- To prevent your API from being overwhelmed by too many requests, API Gateway throttles request to your API.
+- Throttle limits are pre-defined steady state and burst throttling limits set at the account/regional level. 
+- Can setup usage plans to restrict client request submissions to within specified request rates and quotes.
